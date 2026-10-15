@@ -68,6 +68,7 @@ Checked the following services on the domain controller:
 ```powershell
 Get-Service NTDS, DNS, Netlogon, KDC
 ```
+![](Screenshots/dns-resolution.PNG)
 
 **Result:** All four services were reported as running.
 
@@ -131,6 +132,7 @@ Get-ADUser -Identity "peter.nwachineke" |
 ### 3.3 Added the user to the security group
 
 Added `peter.nwachineke` to the `IT-Support` security group.
+![](Screenshots/AD_Member.PNG)
 
 ### 3.4 Verified group membership
 
@@ -144,6 +146,7 @@ Get-ADGroupMember IT-Support
 ```
 
 **Result:** PowerShell confirmed the user's group membership.
+![](Screenshots/ad-test-user.PNG)
 
 ## Stage 4: Domain-User Authentication
 
@@ -158,7 +161,7 @@ Verify that an Active Directory domain account can authenticate successfully on 
 - Domain user: `peter.nwachineke`
 - Domain controller reported by Windows: `WIN-KA4BD6SPOCE`
 - Client computer: `WIN11-DEMO`
-
+![](Screenshots/dns-resolution.PNG)
 ### Verification commands
 
 ```cmd
@@ -183,7 +186,7 @@ The `echo %LOGONSERVER%` command returned:
 ### Outcome
 
 Successful. Windows identified the signed-in account as `TEST\peter.nwachineke` and reported the logon server for the session.
-
+![](Screenshots/domain-user-login.PNG)
 ### Skills practised
 
 - Domain-user authentication
@@ -319,6 +322,9 @@ The policy was enabled, with the following program entered:
 notepad.exe
 ```
 
+Verification from the client command prompt using ```gpresult /r```
+![](Screenshots/Applied_Group_policies.PNG)
+
 ### 7.3 Tested the policy on the Windows client
 
 Signed in to the Windows client as `TEST\peter.nwachineke`.
@@ -327,6 +333,8 @@ Signed in to the Windows client as `TEST\peter.nwachineke`.
 
 This is consistent with the configured logon policy. The final `gpresult /r` confirmation that explicitly lists `IT-Support - User Desktop Policy` under applied user GPOs remains to be recorded.
 
+Notepad Popping up immediately after sign-in
+![](Screenshots/Screenshot_logg-in-after-gpo-applied.PNG)
 ### Skills practised
 
 - Group Policy Management
@@ -339,44 +347,14 @@ This is consistent with the configured logon policy. The final `gpresult /r` con
 
 After capturing the evidence, return the `Run these programs at user logon` setting to **Not Configured** and refresh Group Policy on the client. This prevents Notepad from continuing to launch at every sign-in.
 
-Record cleanup as complete only after performing and checking it.
 
-## Evidence and Screenshots
 
-Store genuine screenshots from the VMware lab in the repository.
-
-Suggested structure:
 
 ```text
 windows-server-it-support-lab/
 ├── README.md
-├── docs/
-│   ├── active-directory/
-│   │   └── README.md
-│   ├── dns/
-│   │   └── README.md
-│   ├── printers/
-│   │   └── README.md
-│   ├── windows-troubleshooting/
-│   │   └── README.md
-│   └── sop/
-│       └── sop-template.md
 └── screenshots/
-    ├── active-directory/
-    ├── dns/
-    └── windows-troubleshooting/
 ```
-
-Suggested screenshots:
-
-- `screenshots/active-directory/domain-health-check.png`
-- `screenshots/active-directory/user-group-membership.png`
-- `screenshots/active-directory/domain-user-login.png`
-- `screenshots/active-directory/it-support-ou.png`
-- `screenshots/active-directory/it-support-gpo-settings.png`
-- `screenshots/active-directory/it-support-gpo-applied.png`
-- `screenshots/active-directory/notepad-logon-test.png`
-
 
 ## Skills Demonstrated So Far
 
