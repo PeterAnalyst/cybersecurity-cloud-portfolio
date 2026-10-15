@@ -349,8 +349,8 @@ After capturing the evidence, return the `Run these programs at user logon` sett
 
 
 
-
-```text
+## Project Structure
+```
 windows-server-it-support-lab/
 ├── README.md
 └── screenshots/
