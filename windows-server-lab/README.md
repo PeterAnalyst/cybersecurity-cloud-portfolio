@@ -322,14 +322,14 @@ The policy was enabled, with the following program entered:
 notepad.exe
 ```
 
-Verification from the client command prompt using ```gpresult /r```
+Verification from the client command prompt using
 ![](Screenshots/Applied_Group_policies.PNG)
 
 ### 7.3 Tested the policy on the Windows client
 
 Signed in to the Windows client as `TEST\peter.nwachineke`.
 
-**Observed result:** Notepad opened a few minutes after login.
+**Observed result:** Notepad opened immediately after sign-in.
 
 This is consistent with the configured logon policy. The final `gpresult /r` confirmation that explicitly lists `IT-Support - User Desktop Policy` under applied user GPOs remains to be recorded.
 
@@ -351,7 +351,7 @@ After capturing the evidence, return the `Run these programs at user logon` sett
 
 ## Project Structure
 ```
-windows-server-it-support-lab/
+windows-server-lab/
 ├── README.md
 └── screenshots/
 ```
